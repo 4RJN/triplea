@@ -48,7 +48,7 @@
   <section id="leistungen">
     <div class="container">
       <h2>Unsere Leistungen</h2>
-      <p class="lead">Aufbereitung, Versiegelung, Smart‑Repair – alles aus einer Hand.</p>
+      <p class="lead">Aufbereitung, Versiegelung, Smart-Repair – alles aus einer Hand.</p>
       <div class="grid three">
         <article class="card">
           <h3><a href="leistungen/autoreinigung.html">Autoreinigung & Pflege</a></h3>
@@ -97,7 +97,7 @@
             <span class="kicker">Glanz & Schutz</span>
           </header>
           <ul class="features">
-            <li>Außenwäsche per Handwäsche</li><li>Innenraum aussaugen</li><li>Reinigung von Türfalzen und Rahmen</li><li>Kofferraum aussaugen & reinigen</li><li>Armaturenreinigung (Schaum)</li><li>Staubsaugen inkl. Teppich</li><li>Scheibenreinigung innen & außen</li><li>Reifenpflege / Glanz</li><li>+ 1‑Step Politur</li>
+            <li>Außenwäsche per Handwäsche</li><li>Innenraum aussaugen</li><li>Reinigung von Türfalzen und Rahmen</li><li>Kofferraum aussaugen & reinigen</li><li>Armaturenreinigung (Schaum)</li><li>Staubsaugen inkl. Teppich</li><li>Scheibenreinigung innen & außen</li><li>Reifenpflege / Glanz</li><li>+ 1-Step Politur</li>
           </ul>
           <p style="margin-top:12px"><a href="pakete/premium.html" class="btn">Anfragen</a></p>
           <span class="badge tag">Beliebt</span>
@@ -119,7 +119,7 @@
   <section id="fahrzeugarten">
     <div class="container">
       <h2>Fahrzeugarten</h2>
-      <p class="lead">PKW, Motorrad, Transporter, Wohnmobil, Boot sowie Old‑ & Youngtimer.</p>
+      <p class="lead">PKW, Motorrad, Transporter, Wohnmobil, Boot sowie Old- & Youngtimer.</p>
       <div class="gallery">
         <a href="fahrzeugarten/pkw.html"><img src="assets/img/fahrzeugart-pkw.jpg" alt="PKW – Platzhalter" /></a>
         <a href="fahrzeugarten/motorrad.html"><img src="assets/img/fahrzeugart-motorrad.jpg" alt="Motorrad – Platzhalter" /></a>
@@ -161,26 +161,27 @@
       <h2>Kontakt & Angebot</h2>
       <p class="lead">Formular ausfüllen oder anrufen – wir melden uns schnell.</p>
       <div class="grid two">
-        <form name="contact" method="post" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
-          <label>Ihr Name
+        <!-- Mailto-Formular: öffnet das lokale Mailprogramm -->
+        <form id="contact-form">
+          <label>Ihr Name<br>
             <input required name="name" placeholder="Max Mustermann" />
           </label>
-          <label>E‑Mail
+          <label>E-Mail<br>
             <input required type="email" name="email" placeholder="max@example.com" />
           </label>
-          <label>Telefon
+          <label>Telefon<br>
             <input name="phone" placeholder="030 123 456" />
           </label>
-          <label>Fahrzeug & Anliegen
-            <textarea name="message" rows="5" placeholder="z. B. Fahrzeugklasse, gewünschtes Paket, Extras …"></textarea>
+          <label>Fahrzeug & Anliegen<br>
+            <textarea name="message" rows="5" placeholder="z. B. Fahrzeugklasse, gewünschtes Paket, Extras …"></textarea>
           </label>
           <button class="btn" type="submit">Absenden</button>
         </form>
+
         <div class="card">
           <h3>Direktkontakt</h3>
           <p><b>Telefon:</b> <a href="tel:+491724656850">0172 46 56 85 0</a><br>
-             <b>E‑Mail:</b> <a href="mailto:info@triplea-prien.de">info@triplea-prien.de</a><br>
+             <b>E-Mail:</b> <a href="mailto:info@triplea-prien.de">info@triplea-prien.de</a><br>
              <b>Adresse:</b> 83209 Prien am Chiemsee, Seestraße 81a</p>
           <p><a class="btn ghost" href="https://wa.me/491724656850" target="_blank" rel="noopener">WhatsApp öffnen</a></p>
           <iframe title="Karte" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.9383164066867!2d12.356477376808622!3d47.86015787043336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477612dd2113c9d9%3A0x8b5ca78f54d08b6!2sSeestra%C3%9Fe%2081a%2C%2083209%20Prien%20am%20Chiemsee!5e0!3m2!1sde!2sde!4v1760519733634!5m2!1sde!2sde" style="width:100%;height:260px;border:1px solid #1a2c48;border-radius:12px"></iframe>
@@ -203,5 +204,40 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+
+  <!-- Mailto-Handler: baut Betreff & Nachricht aus dem Formular und öffnet das Mailprogramm -->
+  <script>
+    (function(){
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const name = (form.elements['name']?.value || '').trim();
+        const email = (form.elements['email']?.value || '').trim();
+        const phone = (form.elements['phone']?.value || '').trim();
+        const message = (form.elements['message']?.value || '').trim();
+
+        const to = 'info@triplea-prien.de';
+        const subject = `Anfrage über Website – ${name || 'ohne Namen'}`;
+        const bodyLines = [
+          'Neue Anfrage über die Website:',
+          '',
+          `Name: ${name}`,
+          `E-Mail: ${email}`,
+          `Telefon: ${phone}`,
+          '',
+          'Nachricht:',
+          message,
+          '',
+          `Seite: ${location.href}`
+        ];
+        const body = bodyLines.join('\n');
+
+        const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = href;
+      });
+    })();
+  </script>
 </body>
 </html>
