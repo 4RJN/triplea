@@ -101,3 +101,48 @@ footer{padding:36px 0;border-top:1px solid #14243c;color:#9fb4cd}
   .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
   .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
+/* === Kontaktformular: volle Breite & bessere Usability === */
+#kontakt form { 
+  width: 100%;
+  max-width: 100%;
+  align-self: stretch;
+}
+
+#kontakt form label {
+  display: block;
+  margin-bottom: 14px;
+}
+
+#kontakt input,
+#kontakt textarea,
+#kontakt select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  font-size: 16px;        /* verhindert iOS-Zoom */
+  line-height: 1.4;
+  border-radius: 12px;
+}
+
+#kontakt textarea {
+  min-height: 140px;      /* mehr Platz zum Schreiben */
+  resize: vertical;
+}
+
+#kontakt .btn[type="submit"] {
+  width: 100%;            /* breiter Button, v. a. mobil angenehm */
+  padding: 14px 18px;
+}
+
+/* Desktop: linke Spalte (Form) etwas breiter als rechte Karte */
+@media (min-width: 900px) {
+  #kontakt .grid.two {
+    grid-template-columns: 3fr 2fr; /* 60/40 */
+    column-gap: 24px;
+  }
+  #kontakt form {
+    max-width: 760px;     /* optional – kannst du anpassen/entfernen */
+  }
+}
