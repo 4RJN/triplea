@@ -28,6 +28,10 @@
 
   
 </head>
+<script>
+  document.querySelectorAll('.menu a')
+    .forEach(a => a.addEventListener('click', () => document.querySelector('.burger')?.click()));
+</script>
 <body>
   <header>
     <div class="container nav">
